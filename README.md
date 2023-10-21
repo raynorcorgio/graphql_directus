@@ -4,5 +4,5 @@ Creating a straightforward GraphQL simulation with Directus as the backend, and 
 
 ### Getting started
 
-- install REST Client extension for VSCode
-- in *GraphQL-request.http* file just click **send request** above every *POST Method* to start querying.
+- install [REST Client](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RestClient) extension for VSCode
+- in *GraphQL-request.http* file just click [`Send Request`](https://postimg.cc/c6SHWYQ1) above every *POST Method* to start querying.
