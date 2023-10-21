@@ -1,1 +1,8 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10504549&assignment_repo_type=AssignmentRepo)
+# Graphql with Directus using Docker
+
+Creating a straightforward GraphQL simulation with Directus as the backend, and utilizing Docker for a smooth development experience.
+
+### Getting started
+
+- install REST Client extension for VSCode
+- in *GraphQL-request.http* file just click **send request** above every *POST Method* to start querying.
