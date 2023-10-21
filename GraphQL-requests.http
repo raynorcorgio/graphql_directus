@@ -1,0 +1,154 @@
+# These are variables you may use to store API tokens and refresh tokens when you receive them
+# in a response.  You can refer to them in requests below using {{token}} and {{refresh}} as placeholders
+# that get replaced with these variable values when the request is sent
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkYWY2Yzg0LWI3Y2ItNDUyMC1iMzZlLTJhZDM0NWE3OWEyYiIsInJvbGUiOiI2M2U0MTk3NS1kNDVjLTQ2OTMtODdiMC1hNTZhNjE4MzU5Y2IiLCJhcHBfYWNjZXNzIjoxLCJhZG1pbl9hY2Nlc3MiOjAsImlhdCI6MTY3OTU0MzExNywiZXhwIjoxNjc5NTQ0MDE3LCJpc3MiOiJkaXJlY3R1cyJ9.Uw3ynhdt70HPAT7SUCeJT-29xkGMJ7nbAcskPXia3uU
+@refresh = olKAhpQ6Gi1w0C5pPYTPD8H8tvZyOUiSrPStI6v4ihpdB6lh-v6H50YLhL94MgEn
+
+### 1.1
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+
+query {
+  genre {
+    GenreId
+    Name
+  }
+}
+
+
+### 1.2
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+
+query {
+  track_by_id(id: 1) {
+    Name
+    Milliseconds
+  }
+}
+
+
+
+### 1.3
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+
+query{
+  track(
+    sort: "Name",
+    page: 2,
+    limit: 25
+  ) {
+    TrackId
+    Name
+    Composer
+    AlbumId {
+      Title
+      ArtistId {
+        Name
+      }
+    } 
+  }
+}
+
+### 1.4
+POST http://localhost:8055/graphql/system
+X-Request-Type: GraphQL
+Content-Type: application/json
+
+mutation{
+  auth_login(
+    email: "super@chinook.com",
+    password: "superpass"
+  ) {
+    access_token
+    refresh_token
+  }
+}
+
+### 1.4.2
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+query{
+  customer{
+    FirstName,
+    LastName
+  }
+}
+
+### 1.5
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+query {
+  customer(
+    filter: {
+      SupportRepId: {
+        FirstName: { _eq: "Jane" },
+        LastName: { _eq: "Peacock" }
+      }
+    }
+  ) {
+    FirstName
+    LastName
+  }
+}
+
+
+### 1.6
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+mutation {
+  create_genre_item(
+    data: {
+        Name: "Jabolko"
+      }
+  ) {
+    GenreId
+    Name
+  }
+}
+
+
+### 1.7
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+mutation {
+  update_genre_item(
+    id:30,
+    data: { Name: "Jabokol update" }
+  ) {
+    GenreId
+    Name
+  }
+}
+
+
+### 1.8
+POST http://localhost:8055/graphql
+X-Request-Type: GraphQL
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+mutation {
+  delete_genre_item(
+    id:30
+  ) {
+    id
+  }
+}
+
